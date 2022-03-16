@@ -7,7 +7,7 @@ Sometimes we need to execute some job at once but have limit in a second. `contr
 
 ## Usage
 ```go
-conLimiter := utils.NewConcurrentLimit(100, 20)
+conLimiter := controlrate.NewConcurrentLimit(100, 20)
 lastLoadNum := 0
 for {
   limitNum, _ := conLimiter.FetchConcurrentNumNow("testApp1", lastLoadNum)

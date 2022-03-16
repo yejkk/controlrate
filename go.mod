@@ -1,4 +1,4 @@
-module github.com/yejkk/control-rate
+module github.com/yejkk/controlrate
 
 go 1.17
 

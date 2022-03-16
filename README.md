@@ -1,15 +1,18 @@
 # control-rate
 
+Sometimes we need to execute some job at once but have limit in a second. `control-rate` can help you do this by set totalLimit and onceLimit and return num which will increase by time but never over the limit.
+
 ## Import
 `go get github.com/yejkk/controlrate`
 
 ## Usage
 ```go
-conLimiter := utils.NewConcurrentLimit(maxConcurrentNum, onceAppMaxConcurrentNum)
+conLimiter := utils.NewConcurrentLimit(100, 20)
 lastLoadNum := 0
-limitNum, err := conLimiter.FetchConcurrentNumNow(config.App.GetAppID(), lastLoadNum)
-if err != nil {
-    return 
+for {
+  limitNum, _ := conLimiter.FetchConcurrentNumNow("testApp1", lastLoadNum)
+  lastLoadNum = limitNum
+  ...
 }
-lastLoadNum = limitNum
 ```
+limitNum will never 
